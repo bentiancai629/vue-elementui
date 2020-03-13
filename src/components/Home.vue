@@ -21,7 +21,8 @@
           unique-opened
           :collapse="isCollapse"
           :collapse-transition="false"
-          :router=true
+          :router="true"
+          :default-active="activePath"
         >
           <!-- 一级菜单 -->
           <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
@@ -37,6 +38,7 @@
               :index=" '/' + subItem.path "
               v-for="subItem in item.children"
               :key="subItem.id"
+              @click="saveNavState('/' + subItem.path)"
             >
               <!-- 二级菜单模板区域 -->
               <template slot="title">
@@ -71,12 +73,15 @@ export default {
         '145': 'iconfont icon-baobiao'
       },
       // 还是否折叠
-      isCollapse: false
+      isCollapse: false,
+      // 被激活的链接地址
+      activePath: ''
     }
   },
   // 加载home页面时候立即获取所有左侧菜单
   created() {
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     //  退出清空token
@@ -94,6 +99,11 @@ export default {
     // 点击按钮实现菜单折叠保存
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
+    },
+    // 保存链接的激活状态
+    saveNavState(activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   }
 }
