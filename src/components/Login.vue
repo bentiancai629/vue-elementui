@@ -90,7 +90,7 @@ export default {
         // console.log(valid)
         if (!valid) return // false则不处理 直接return
         const { data: res } = await this.$http.post('login', this.loginForm)
-        console.log(res)
+        // console.log(res)
         if (res.meta.status !== 200) {
           return this.$message.error('登陆失败!')
         }
@@ -99,7 +99,7 @@ export default {
         // 1. 登陆成功后保存token到sessionStroestorage 会话期间的存储机制
         //  1.1  登陆之外的api必须在登陆之后启用
         //  1.2 token只在当前网站打开之前生效
-        console.log(res)
+        // console.log(res)
         window.sessionStorage.setItem('token', res.data.token)
         // 2. 编程式后台跳转
         this.$router.push('home')

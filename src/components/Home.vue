@@ -66,11 +66,11 @@ export default {
       // 左侧菜单数据
       menulist: [],
       iconsObj: {
-        '125': 'iconfont icon-user',
-        '103': 'iconfont icon-tijikongjian',
-        '101': 'iconfont icon-baobiao',
-        '102': 'iconfont icon-danju',
-        '145': 'iconfont icon-baobiao'
+        125: 'iconfont icon-user',
+        103: 'iconfont icon-tijikongjian',
+        101: 'iconfont icon-baobiao',
+        102: 'iconfont icon-danju',
+        145: 'iconfont icon-baobiao'
       },
       // 还是否折叠
       isCollapse: false,
@@ -92,7 +92,7 @@ export default {
     // 获取所有菜单
     async getMenuList() {
       const { data: res } = await this.$http.get('menus')
-      console.log(res)
+      // console.log(res)
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg) // 报错
       this.menulist = res.data
     },
