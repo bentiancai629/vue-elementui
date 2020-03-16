@@ -1,4 +1,8 @@
 import Vue from 'vue'
+
+import Timeline from './timeline/index.js'
+// import TimelineItem from './timeline-item/index.js'
+
 import {
   Button,
   Form,
@@ -72,6 +76,8 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Steps)
 Vue.use(Step)
+Vue.use(Timeline)
+// Vue.use(TimelineItem)
 
 // 挂载到vue的原属性
 Vue.prototype.$message = Message
