@@ -274,9 +274,7 @@ export default {
     // 监听保存用户状态 switch改变
     async userStateChanged(userInfo) {
       // console.log(userInfo)
-      const { data: res } = await this.$http.put(
-        `users/${userInfo.id}/state/${userInfo.mg_state}`
-      )
+      const { data: res } = await this.$http.put(`users/${userInfo.id}/state/${userInfo.mg_state}`)
       if (res.meta.status !== 200) {
         userInfo.mg_state = !userInfo.mg_state
         return this.$message.error('更新用户状态失败！')
@@ -324,13 +322,10 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
         // 发起修改数据信息请求
-        const { data: res } = await this.$http.put(
-          'users/' + this.editForm.id,
-          {
-            email: this.editForm.email,
-            mobile: this.editForm.mobile
-          }
-        )
+        const { data: res } = await this.$http.put('users/' + this.editForm.id, {
+          email: this.editForm.email,
+          mobile: this.editForm.mobile
+        })
         if (res.meta.status !== 200) {
           return this.$message.error('更新用户信息失败！')
         }
@@ -344,15 +339,11 @@ export default {
     // 删除用户数据
     async removeUserById(id) {
       // 询问用户是否要删除
-      const confirmResult = await this.$confirm(
-        '此操作将永久删除数据是否继续?',
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).catch(err => err)
+      const confirmResult = await this.$confirm('此操作将永久删除数据是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err)
 
       // 如果用户确认删除 返回值为字符串 confirm
       // 如果用户取消删除 返回值为字符串 cancel
@@ -369,8 +360,7 @@ export default {
       this.userInfo = userInfo
       // 获取所有角色列表
       const { data: res } = await this.$http.get('roles')
-      if (res.meta.status !== 200)
-        return this.$message.error('获取角色列表失败')
+      if (res.meta.status !== 200) return this.$message.error('获取角色列表失败')
       this.rolesList = res.data
 
       this.setRoleDialogVisable = true
@@ -380,12 +370,9 @@ export default {
       if (!this.selectedRoleId) {
         return this.$message.error('请选择要分配的角色')
       }
-      const { data: res } = await this.$http.put(
-        `users/${this.userInfo.id}/role`,
-        {
-          rid: this.selectedRoleId
-        }
-      )
+      const { data: res } = await this.$http.put(`users/${this.userInfo.id}/role`, {
+        rid: this.selectedRoleId
+      })
       if (res.meta.status !== 200) {
         return this.$message.error('更新角色失败')
       }

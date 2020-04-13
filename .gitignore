@@ -21,3 +21,4 @@ yarn-error.log*
 *.sw?
 vue_api_server
 .vue_api_server
+*.log

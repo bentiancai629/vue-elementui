@@ -40,7 +40,7 @@
           <el-table-column type="index"></el-table-column>
           <el-table-column label="参数名称" prop="attr_name"></el-table-column>
           <el-table-column label="操作" >
-            <template slot-scope="scope">
+            <template >
               <el-button size="mini" type="primary" icon="el-icon-edit">搜索</el-button>
               <el-button size="mini" type="danger" icon="el-icon-delete">删除</el-button>
             </template>
